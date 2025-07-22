@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - BreastCareInsights</title>
+    <style>
+        /* General Body Styling */
+        body {
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        .topnav {
+            position: sticky;
+            top: 0;
+            overflow: hidden;
+            background: linear-gradient(to right, #de5285 , #e63e62); /* Gradient for a modern look */
+            padding: 3px 0;
+            z-index: 100;
+        }
+
+        .topnav a {
+            float: left;
+            color: #fff;
+            text-align: center;
+            padding: 14px 40px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .topnav a.title {
+            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color: white;
+            margin-right: 120px;
+        }
+
+        .topnav a:hover {
+            background-color: rgba(255, 255, 255, 0.3); /* Subtle hover effect */
+            border-radius: 5px; /* Rounded corners on hover */
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px; /* Rounded corners for modern feel */
+        }
+
+        .container h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #e63e62;
+        }
+
+        /* FAQ Section Styling */
+        .faq-item {
+            margin-bottom: 10px;
+        }
+
+        .faq-question {
+            background-color: #e63e62;
+            color: white;
+            border: none;
+            padding: 12px;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #FF69B4; /* Lighter pink on hover */
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            background-color: #f9f9f9;
+            text-align: justify;
+        }
+
+        .faq-answer p {
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #de5285;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .topnav a {
+                padding: 14px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div class='topnav'>
+  <a class='title' href="#">BreastCareInsights</a>
+  <a href="#">Login</a>
+  <a href="#">Register</a>
+  <a href="#">Profile</a>
+  <a href="#">Patients History</a>
+  <a href="#">FAQ</a>
+</div>
+
+<!-- Main Content -->
+<main>
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-question" data-target="faq1">1. What is BreastCareInsights?</button>
+      <div id="faq1" class="faq-answer">
+        <p>BreastCareInsights is a platform designed to assist radiologists and oncologists in detecting breast cancer early by analyzing patient images like mammograms using advanced AI techniques and XAI (Explainable AI) frameworks.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" data-target="faq2">2. How do I upload patient images?</button>
+      <div id="faq2" class="faq-answer">
+        <p>Simply navigate to the home page and click the "Upload Image" button. You can upload X-rays, mammograms, or other imaging files in supported formats.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" data-target="faq3">3. What formats are supported for uploads?</button>
+      <div id="faq3" class="faq-answer">
+        <p>We currently support JPEG, PNG, and DICOM formats for image uploads. Other formats might be added in future updates.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" data-target="faq4">4. How does the AI model work?</button>
+      <div id="faq4" class="faq-answer">
+        <p>The AI model analyzes the uploaded images using deep learning algorithms and provides insights regarding possible malignancies. Our Explainable AI (XAI) component ensures transparency in the decision-making process by providing detailed explanations for the predictions.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" data-target="faq5">5. How reliable are the results?</button>
+      <div id="faq5" class="faq-answer">
+        <p>The AI model has been trained on a large dataset of breast cancer cases and has shown high accuracy in detecting early-stage cancer. However, the final decision should always be made by a certified medical professional based on clinical judgment and additional tests.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" data-target="faq6">6. How is patient data protected?</button>
+      <div id="faq6" class="faq-answer">
+        <p>All patient data is encrypted and securely stored in compliance with healthcare regulations such as HIPAA and GDPR. We prioritize data security and privacy at every level.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" data-target="faq7">7. Can I access the patient's previous records?</button>
+      <div id="faq7" class="faq-answer">
+        <p>Yes, once the patient’s data has been uploaded, you can access their history, including previous images and analysis results, from the "Patient History" section.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" data-target="faq8">8. Who can I contact for support?</button>
+      <div id="faq8" class="faq-answer">
+        <p>If you experience any issues or have further questions, please reach out to our support team via email at support@breastcareinsights.com or through the "Contact Us" section on the website.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2024 BreastCareInsights. All Rights Reserved.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const questions = document.querySelectorAll('.faq-question');
+
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                const targetId = question.getAttribute('data-target');
+                const answer = document.getElementById(targetId);
+
+                // Toggle the clicked answer
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                } else {
+                    answer.style.display = 'block';
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

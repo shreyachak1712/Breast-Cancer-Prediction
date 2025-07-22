@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FCBACB;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 10px 0;
+            background-color: #e6f7ff; /* Added background color */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            background: #fff;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background: #007bff;
+            color: #fff;
+        }
+        img {
+            margin-top: 20px; /* Space above the image */
+            max-width: 200px; /* Adjust size as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Account Details</h1>
+        {% load static %}
+
+        {% if user_details %}
+            
+            <img src="{% static 'C:\Users\Iqqu\Desktop\pythonProject1\pythonProject1\carebreast\static\images\OIG4.5OMYyJI.xCGxSU.jpeg' %}" alt="Girl Logo">
+            <p>Name: {{ user_details.name }}</p>
+            <p>Email: {{ user_details.email }}</p>
+        {% else %}
+            <p>No user details found.</p>
+        {% endif %}
+        <a href="{% url 'welcome' %}">Back to Home page</a>
+    </div>
+</body>
+</html>

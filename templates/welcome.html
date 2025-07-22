@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreastCareInsights - Welcome</title>
+    {% load static %}
+
+    <style>
+        body {
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        .topnav {
+            position: sticky;
+            top: 0;
+            overflow: hidden;
+            background: linear-gradient(to right, #de5285, #e63e62); /* Gradient for a modern look */
+            padding: 3px 0;
+            z-index: 100;
+        }
+
+        .topnav a, .topnav button {
+            float: left;
+            color: #fff;
+            text-align: center;
+            padding: 14px 40px;
+            text-decoration: none;
+            font-size: 16px;
+            border: none;
+            background: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .topnav a.title {
+            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color: white;
+            margin-right: 120px;
+        }
+
+        .topnav a:hover, .topnav button:hover {
+            background-color: rgba(255, 255, 255, 0.3); /* Subtle hover effect */
+            border-radius: 5px; /* Rounded corners on hover */
+            cursor: pointer;
+        }
+
+        .logout-button {
+            float: right; /* Aligns the logout button to the right */
+        }
+
+        /* Fullscreen Image Section */
+        .bg {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Fullscreen */
+            background: url("{% static 'images/i.jpg' %}") no-repeat center;            
+            background-size: 800px; /* Ensure the image covers the full width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Dark overlay for the image */
+        }
+
+        .bg-content {
+            position: relative;
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .bg-content h1 {
+            font-size: 48px;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .bg-content p {
+            font-size: 18px;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px; /* Rounded corners for modern feel */
+        }
+
+        .container h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #e63e62;
+        }
+
+        button {
+            background-color: #e63e62;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px; /* Rounded button */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #FF69B4; /* Lighter pink on hover */
+        }
+
+        /* Logout Button in the Welcome Section */
+        .logout-container {
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #de5285;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .topnav a {
+                padding: 14px 20px;
+            }
+
+            .bg-content h1 {
+                font-size: 32px;
+            }
+
+            .bg-content p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% load static %}
+    <!-- Navigation Bar -->
+<div class='topnav'>
+    <a href="#" class='title'>BreastCareInsights</a>
+    <a href="{% url 'signin' %}" class="login-button">Login</a>
+    <a href="{% url 'signup' %}" class="register-button">Register</a>
+    <a href="{% url 'account_details' %}">Profile</a>
+    <a href="#">Patients History</a>
+    <a href="{% url 'faq' %}">FAQ</a>
+
+
+    <!-- Logout button integrated in the navigation bar -->
+    {% if is_authenticated %}
+        <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    {% else %}
+        <a class="logout-button" style="pointer-events: none; opacity: 0.5;">Logout</a>
+    {% endif %}
+
+</div>
+
+<!-- Fullscreen Image Section with Text -->
+<div class='bg'>
+    <div class="bg-content">
+        <h1>Early Detection Saves Lives</h1>
+        <p>Empowering doctors to detect breast cancer with precision and care.</p>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main>
+    <div class="container">
+        <h2>Welcome to BreastCareInsights {{ e }}!</h2>
+        <p>Our platform aids doctors in early and accurate breast cancer detection using cutting-edge technology.</p>
+        <form method="POST" enctype="multipart/form-data" action="{% url 'upload_image' %}">
+            {% csrf_token %}
+            <input type="file" name="image" accept="image/*" required />
+            <button type="submit">Upload Image</button>
+        </form>
+
+        {% if prediction %}
+        <h3>Prediction: {{ prediction }}</h3>
+        <h4>Uploaded Image:</h4>
+        <img src="{{ uploaded_image_path }}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+        <h4>Grad-CAM Image:</h4>
+        <img src="{{ heatmap_path }}" alt="Grad-CAM Image" style="max-width: 100%; height: auto;">
+        {% endif %}
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 BreastCareInsights. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

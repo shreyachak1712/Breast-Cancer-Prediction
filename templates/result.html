@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+        p {
+            font-size: 18px;
+            text-align: center;
+            margin: 10px 0;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 90%;
+            border: 2px solid #2980b9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        a:hover {
+            background-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    
+    <p><strong>Prediction:</strong> {{ label }}</p>
+    <p><strong>Confidence:</strong> {{ probability }}%</p>
+
+    <h2>Uploaded Image:</h2>
+    <img src="{{ image_url }}" alt="Uploaded Image">
+
+    <h2>Grad-CAM Image:</h2>
+    <img src="{{ heatmap_url }}" alt="Grad-CAM Image">
+
+    <a href="{% url 'welcome' %}">Go back</a>
+</body>
+</html>
